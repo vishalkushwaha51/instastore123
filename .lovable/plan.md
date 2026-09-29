@@ -2,15 +2,15 @@
 
 A mobile-first online-store platform. Two sides: a customer storefront and a seller dashboard. Built multi-seller from day one — every product and order belongs to a store — with one demo store, VIRA (women's fashion), to start.
 
-## Before I can build the saving/login parts
+## Supabase connection status
 
-You asked to use your own Supabase project (`instastore-mvp`). I can't connect it from chat — you do it in Lovable under **Project Settings → Connectors → Supabase**, then pick `instastore-mvp`. Once that's connected I can create the tables, seller login, and real saving of products and orders.
+You said `instastore-mvp` is connected, but the project doesn't show the connection yet (no Supabase setup files have appeared). It may still be syncing. If it doesn't show up, open **Project Settings → Connectors → Supabase** again and check that `instastore-mvp` shows as linked.
 
-So the build runs in two stages:
+The build runs in two stages, so this doesn't hold anything up:
 
-**Stage 1 (now, no connection needed):** the complete app — every page, every screen, all the layout and design — running on realistic VIRA demo data.
+**Stage 1 (right away):** the complete app — every page, every screen, all the layout and design — running on realistic VIRA demo data.
 
-**Stage 2 (after you connect `instastore-mvp`):** tables, seller email/password login, and real saving. Screens stay the same; only the data source changes.
+**Stage 2 (as soon as the connection shows up):** tables in `instastore-mvp`, seller email/password login, and real saving. Screens stay the same; only the data source changes.
 
 ## Customer storefront
 

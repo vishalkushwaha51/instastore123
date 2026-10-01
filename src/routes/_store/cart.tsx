@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { inr } from "@/lib/store";
+import { OrderTotals } from "@/components/store/OrderTotals";
 
 export const Route = createFileRoute("/_store/cart")({
   head: () => ({
@@ -16,17 +17,6 @@ export const Route = createFileRoute("/_store/cart")({
   }),
   component: CartPage,
 });
-
-export function OrderTotals({ subtotal, total }: { subtotal: number; total: number }) {
-  return (
-    <div className="space-y-2 text-sm">
-      <div className="flex justify-between"><span className="text-muted-foreground">Subtotal (MRP)</span><span>{inr(subtotal)}</span></div>
-      <div className="flex justify-between text-accent"><span>Discount</span><span>−{inr(subtotal - total)}</span></div>
-      <div className="flex justify-between"><span className="text-muted-foreground">Delivery</span><span>Free</span></div>
-      <div className="flex justify-between border-t border-border pt-3 text-base font-semibold"><span>Total</span><span>{inr(total)}</span></div>
-    </div>
-  );
-}
 
 function CartPage() {
   const { items, setQty, remove, subtotal, total } = useCart();

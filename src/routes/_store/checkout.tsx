@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/lib/cart";
 import { inr } from "@/lib/store";
-import { OrderTotals } from "./cart";
+import { OrderTotals } from "@/components/store/OrderTotals";
 
 export const Route = createFileRoute("/_store/checkout")({
   head: () => ({

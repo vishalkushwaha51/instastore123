@@ -47,14 +47,14 @@ function ProductsPage() {
 
   async function patch(p: Product, values: Partial<Product>) {
     const { error } = await supabase.from("products").update(values).eq("id", p.id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     refresh();
   }
 
   async function remove(p: Product) {
     if (!confirm(`Delete "${p.name}"?`)) return;
     const { error } = await supabase.from("products").delete().eq("id", p.id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Product deleted");
     refresh();
   }
@@ -63,10 +63,10 @@ function ProductsPage() {
     e.preventDefault();
     if (!draft) return;
     const mrp = Number(draft.mrp), sale = Number(draft.sale_price), stock = parseInt(draft.stock, 10);
-    if (!draft.name.trim()) return toast.error("Add a product name");
-    if (!(mrp > 0) || !(sale > 0)) return toast.error("Enter MRP and sale price");
-    if (sale > mrp) return toast.error("Sale price can't be higher than MRP");
-    if (isNaN(stock) || stock < 0) return toast.error("Stock must be 0 or more");
+    if (!draft.name.trim()) { toast.error("Add a product name"); return; }
+    if (!(mrp > 0) || !(sale > 0)) { toast.error("Enter MRP and sale price"); return; }
+    if (sale > mrp) { toast.error("Sale price can't be higher than MRP"); return; }
+    if (isNaN(stock) || stock < 0) { toast.error("Stock must be 0 or more"); return; }
     setSaving(true);
     const values = {
       name: draft.name.trim(),
@@ -80,7 +80,7 @@ function ProductsPage() {
       ? await supabase.from("products").update(values).eq("id", draft.id)
       : await supabase.from("products").insert({ ...values, store_id: store.id });
     setSaving(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success(draft.id ? "Product updated" : "Product added");
     setDraft(null);
     refresh();

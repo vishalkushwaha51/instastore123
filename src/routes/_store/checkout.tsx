@@ -69,7 +69,7 @@ function Checkout() {
     setErrors({});
     setBusy(true);
     const { data, error } = await supabase.rpc("place_order", {
-      _store_id: items[0].store_id,
+      _store_id: items[0]!.store_id,
       _customer: r.data,
       _items: items.map((i) => ({ product_id: i.product_id, quantity: i.quantity })),
     });

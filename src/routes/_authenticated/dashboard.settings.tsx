@@ -37,12 +37,12 @@ function SettingsPage() {
 
   async function save(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim()) return toast.error("Store name is required");
+    if (!form.name.trim()) { toast.error("Store name is required"); return; }
     setBusy(true);
     const values = Object.fromEntries(Object.entries(form).map(([k, v]) => [k, v.trim() || null]));
     const { error } = await supabase.from("stores").update({ ...values, name: form.name.trim() }).eq("id", store.id);
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Store settings saved");
     qc.invalidateQueries({ queryKey: ["my-store"] });
     qc.invalidateQueries({ queryKey: ["store"] });

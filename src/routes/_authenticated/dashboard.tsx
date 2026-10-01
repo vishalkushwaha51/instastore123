@@ -17,7 +17,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
     ],
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(myStoreQuery),
-  errorComponent: ({ error }) => <p className="p-10 text-destructive">Couldn't load your store: {error.message}</p>,
+  errorComponent: ({ error }) => <p className="p-10 text-destructive">Couldn't load your store: {(error as Error).message}</p>,
   component: DashboardLayout,
 });
 

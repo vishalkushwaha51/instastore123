@@ -18,6 +18,9 @@ import { Route as StoreCartRouteImport } from './routes/_store/cart'
 import { Route as StoreCheckoutRouteImport } from './routes/_store/checkout'
 import { Route as StoreShopRouteImport } from './routes/_store/shop'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
+import { Route as AuthenticatedDashboardOrdersRouteImport } from './routes/_authenticated/dashboard.orders'
+import { Route as AuthenticatedDashboardProductsRouteImport } from './routes/_authenticated/dashboard.products'
+import { Route as AuthenticatedDashboardSettingsRouteImport } from './routes/_authenticated/dashboard.settings'
 import { Route as StoreOrderIdRouteImport } from './routes/_store/order.$id'
 import { Route as StoreProductIdRouteImport } from './routes/_store/product.$id'
 
@@ -65,6 +68,24 @@ const AuthenticatedDashboardIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedDashboardRoute,
   } as any)
+const AuthenticatedDashboardOrdersRoute =
+  AuthenticatedDashboardOrdersRouteImport.update({
+    id: '/orders',
+    path: '/orders',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardProductsRoute =
+  AuthenticatedDashboardProductsRouteImport.update({
+    id: '/products',
+    path: '/products',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
+const AuthenticatedDashboardSettingsRoute =
+  AuthenticatedDashboardSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 const StoreOrderIdRoute = StoreOrderIdRouteImport.update({
   id: '/order/$id',
   path: '/order/$id',
@@ -83,6 +104,9 @@ export interface FileRoutesByFullPath {
   '/cart': typeof StoreCartRoute
   '/checkout': typeof StoreCheckoutRoute
   '/shop': typeof StoreShopRoute
+  '/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
+  '/dashboard/products': typeof AuthenticatedDashboardProductsRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
   '/order/$id': typeof StoreOrderIdRoute
   '/product/$id': typeof StoreProductIdRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -93,6 +117,9 @@ export interface FileRoutesByTo {
   '/cart': typeof StoreCartRoute
   '/checkout': typeof StoreCheckoutRoute
   '/shop': typeof StoreShopRoute
+  '/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
+  '/dashboard/products': typeof AuthenticatedDashboardProductsRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
   '/order/$id': typeof StoreOrderIdRoute
   '/product/$id': typeof StoreProductIdRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
@@ -107,6 +134,9 @@ export interface FileRoutesById {
   '/_store/checkout': typeof StoreCheckoutRoute
   '/_store/shop': typeof StoreShopRoute
   '/_store/': typeof StoreIndexRoute
+  '/_authenticated/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
+  '/_authenticated/dashboard/products': typeof AuthenticatedDashboardProductsRoute
+  '/_authenticated/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
   '/_store/order/$id': typeof StoreOrderIdRoute
   '/_store/product/$id': typeof StoreProductIdRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -120,6 +150,9 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/shop'
+    | '/dashboard/orders'
+    | '/dashboard/products'
+    | '/dashboard/settings'
     | '/order/$id'
     | '/product/$id'
     | '/dashboard/'
@@ -130,6 +163,9 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/shop'
+    | '/dashboard/orders'
+    | '/dashboard/products'
+    | '/dashboard/settings'
     | '/order/$id'
     | '/product/$id'
     | '/dashboard'
@@ -143,6 +179,9 @@ export interface FileRouteTypes {
     | '/_store/checkout'
     | '/_store/shop'
     | '/_store/'
+    | '/_authenticated/dashboard/orders'
+    | '/_authenticated/dashboard/products'
+    | '/_authenticated/dashboard/settings'
     | '/_store/order/$id'
     | '/_store/product/$id'
     | '/_authenticated/dashboard/'
@@ -219,6 +258,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
       parentRoute: typeof AuthenticatedDashboardRoute
     }
+    '/_authenticated/dashboard/orders': {
+      id: '/_authenticated/dashboard/orders'
+      path: '/orders'
+      fullPath: '/dashboard/orders'
+      preLoaderRoute: typeof AuthenticatedDashboardOrdersRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
+    '/_authenticated/dashboard/products': {
+      id: '/_authenticated/dashboard/products'
+      path: '/products'
+      fullPath: '/dashboard/products'
+      preLoaderRoute: typeof AuthenticatedDashboardProductsRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
+    '/_authenticated/dashboard/settings': {
+      id: '/_authenticated/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof AuthenticatedDashboardSettingsRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
     '/_store/order/$id': {
       id: '/_store/order/$id'
       path: '/order/$id'
@@ -237,11 +297,17 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedDashboardRouteChildren {
+  AuthenticatedDashboardOrdersRoute: typeof AuthenticatedDashboardOrdersRoute
+  AuthenticatedDashboardProductsRoute: typeof AuthenticatedDashboardProductsRoute
+  AuthenticatedDashboardSettingsRoute: typeof AuthenticatedDashboardSettingsRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
 }
 
 const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
   {
+    AuthenticatedDashboardOrdersRoute: AuthenticatedDashboardOrdersRoute,
+    AuthenticatedDashboardProductsRoute: AuthenticatedDashboardProductsRoute,
+    AuthenticatedDashboardSettingsRoute: AuthenticatedDashboardSettingsRoute,
     AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   }
 
